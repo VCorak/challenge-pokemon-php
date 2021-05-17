@@ -16,7 +16,7 @@
 
 <div class="container">
 
-    // SEARCH CONTAINER
+
     <div class="search-container">
         <div class="search-container col-md-5 col-sm-5">
             <div class="input-group mb-3">
@@ -26,18 +26,29 @@
         </div>
     </div>
 
-    // RESULTS CONTAINER
+  
     <?php
-   
-    $url = "https://pokeapi.co/api/v2/ability/${term}";
-    for ($index = 0; $index < 151; $index++) {
-        $data = file_get_contents($url, $term);
-        $pokemon = json_decode($data);
-        echo $pokemon-> name;
+
+    $pokemon_name = '';
+    $pokemon_id = '';
+
+    if (!empty($_GET["pokemon"])) {
+        $url = 'https://pokeapi.co/api/v2/pokemon/' . $_GET["pokemon"];
+        $pokemonData = file_get_contents($url);
+        $pokemonResults = json_decode($pokemonData, true);
+
+        $pokemon_name = $pokemonResults['name'];
+        $pokemon_id = $pokemonResults['id'];
+
+
     }
+
     ?>
 
-
+<div class = "results-container">
+    <h3><?php echo $pokemon_name ?></h3>
+    <h3><?php echo $pokemon_id ?></h3>
+</div>
 </div>
 
 
