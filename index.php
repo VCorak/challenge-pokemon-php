@@ -18,21 +18,13 @@
 
 
     <div class="search-container">
-        <!--<div class="search-container col-md-5 col-sm-5">
+        <form class="search-container col-md-5 col-sm-5">
             <div class="input-group mb-3">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
-                <input type="text" id="input-id" class="form-control" placeholder="Search pokemon by id or name" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Search</button>
+                <input type="text" id="input-id" name="pokemon" class="form-control" placeholder="Search pokemon by id or name" aria-label="Example text with button addon" aria-describedby="button-addon1">
             </div>
-        </div> -->
-
-        <form action="">
-                <input type="text" name="pokemon">
-            <br>
-            <button type="submit">Search</button>
         </form>
     </div>
-
-
     <?php
 
     $pokemon_name = '';
@@ -55,7 +47,7 @@
     <h3><?php echo $pokemon_name ?></h3>
     <h3><?php echo $pokemon_id ?></h3>
 </div>
-</div>
+
 
 
 </body>
