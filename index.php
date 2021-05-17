@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+
 <div class="container">
+
+    // SEARCH CONTAINER
     <div class="search-container">
         <div class="search-container col-md-5 col-sm-5">
             <div class="input-group mb-3">
@@ -21,7 +25,21 @@
             </div>
         </div>
     </div>
+
+    // RESULTS CONTAINER
+    <?php
+   
+    $url = "https://pokeapi.co/api/v2/ability/${term}";
+    for ($index = 0; $index < 151; $index++) {
+        $data = file_get_contents($url, $term);
+        $pokemon = json_decode($data);
+        echo $pokemon-> name;
+    }
+    ?>
+
+
 </div>
+
 
 </body>
 </html>
