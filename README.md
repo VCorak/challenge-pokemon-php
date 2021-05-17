@@ -21,8 +21,14 @@ To know where to search for PHP documentation
 First I need to read documentation because I do not even know how to start, so starting from basics.
 - I managed to start localhost, still do not have virtual host but at least I can see what is going on in browser...
 - do I need to write html? I need. How? 
+  - I added basic search form with button input
 - writing basic styling with css
 - fetch the data from API
+  - had some issues with fetching data. Got error: "Warning: file_get_contents(): Unable to find the wrapper "https" - did you forget to enable it when you configured PHP?"
+    and had to edit my php.ini file. Uncommented line extension=openssl and added line extension_dir = "ext". 
+    And it worked, but have to consult with coach if this is right solution.
 - display results
+    - manage to display name and id for now...to be continued tomorrow...
+
 
 
