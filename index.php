@@ -18,22 +18,28 @@
 
 
     <div class="search-container">
-        <div class="search-container col-md-5 col-sm-5">
+        <!--<div class="search-container col-md-5 col-sm-5">
             <div class="input-group mb-3">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
                 <input type="text" id="input-id" class="form-control" placeholder="Search pokemon by id or name" aria-label="Example text with button addon" aria-describedby="button-addon1">
             </div>
-        </div>
+        </div> -->
+
+        <form action="">
+                <input type="text" name="pokemon">
+            <br>
+            <button type="submit">Search</button>
+        </form>
     </div>
 
-  
+
     <?php
 
     $pokemon_name = '';
     $pokemon_id = '';
 
     if (!empty($_GET["pokemon"])) {
-        $url = 'https://pokeapi.co/api/v2/pokemon/' . $_GET["pokemon"];
+        $url = "https://pokeapi.co/api/v2/pokemon/" . $_GET["pokemon"];
         $pokemonData = file_get_contents($url);
         $pokemonResults = json_decode($pokemonData, true);
 
