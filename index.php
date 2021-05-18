@@ -74,12 +74,7 @@
         $evoResults = json_decode($evoData, true);
 
         $pokemon_evolution = $evoResults['evolves_from_species']['name'];
-
     }
-
-
-
-
 
 
     ?>
@@ -90,7 +85,12 @@
     <h3><?php echo ucwords($pokemon_name) ?></h3>
     <h3><?php echo $pokemon_id ?></h3>
     <h3 id="pokemon_types"><?php echo ucfirst($pokemon_type)?></h3>
-    <h3 id="pokemon_types"><?php echo ucfirst($pokemon_evolution)?></h3>
+    <h4 id="pokemon_evolution"> <?php
+        if ($pokemon_evolution == false) {
+            echo "This pokemon has no evolution.";
+        } else {
+            echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
+        }?></h4>
     <p><?php echo ucfirst($pokemon_abilities) ?></p>
 
 </div>
