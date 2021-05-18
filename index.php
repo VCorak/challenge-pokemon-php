@@ -32,6 +32,7 @@
     $pokemon_id = '';
     $pokemon_image = '';
     $pokemon_moves = '';
+    $pokemon_type = '';
 
 
         if ($_GET['term'] ?? '') {
@@ -47,6 +48,9 @@
             $pokemon_move1 = $pokemon_moves[1]['move']['name'];
             $pokemon_move2 = $pokemon_moves[2]['move']['name'];
             $pokemon_move3 = $pokemon_moves[3]['move']['name'];
+            $pokemon_type = $pokemonResults['types'][0]['type']['name'];
+
+
         }
 
 
@@ -61,7 +65,7 @@
 
     }
 
-    
+
 
 
 
@@ -73,6 +77,7 @@
     <img src='<?php echo $pokemon_image ?>'>
     <h3><?php echo ucwords($pokemon_name) ?></h3>
     <h3><?php echo $pokemon_id ?></h3>
+    <h3 id="pokemon_types"><?php echo ucfirst($pokemon_type)?></h3>
     <p><?php echo ucfirst($pokemon_abilities) ?></p>
 
 </div>
