@@ -66,6 +66,18 @@
     }
 
 
+    $pokemon_evolution = '';
+
+    if ($_GET['term'] ?? '') {
+        $evo_url = "https://pokeapi.co/api/v2/pokemon-species/" . $_GET["term"];
+        $evoData = file_get_contents($evo_url);
+        $evoResults = json_decode($evoData, true);
+
+        $pokemon_evolution = $evoResults['evolves_from_species']['name'];
+
+    }
+
+
 
 
 
@@ -78,6 +90,7 @@
     <h3><?php echo ucwords($pokemon_name) ?></h3>
     <h3><?php echo $pokemon_id ?></h3>
     <h3 id="pokemon_types"><?php echo ucfirst($pokemon_type)?></h3>
+    <h3 id="pokemon_types"><?php echo ucfirst($pokemon_evolution)?></h3>
     <p><?php echo ucfirst($pokemon_abilities) ?></p>
 
 </div>
