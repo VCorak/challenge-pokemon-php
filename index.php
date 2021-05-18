@@ -16,7 +16,6 @@
 
 <div class="container">
 
-
     <div class="search-container">
         <form class="search-container col-md-5 col-sm-5">
             <div class="input-group mb-3">
@@ -27,13 +26,12 @@
     </div>
     
     <?php
-
+// POKEMON IN GENERAL
     $pokemon_name = '';
     $pokemon_id = '';
     $pokemon_image = '';
     $pokemon_moves = '';
     $pokemon_type = '';
-
 
         if ($_GET['term'] ?? '') {
             $url = "https://pokeapi.co/api/v2/pokemon/" . $_GET["term"];
@@ -50,10 +48,8 @@
             $pokemon_move3 = $pokemon_moves[3]['move']['name'];
             $pokemon_type = $pokemonResults['types'][0]['type']['name'];
 
-
         }
-
-
+    // POKEMON ABILITIES
     $pokemon_abilities = '';
 
     if ($_GET['term'] ?? '') {
@@ -65,7 +61,7 @@
 
     }
 
-
+    // POKEMON EVOLUTION
     $pokemon_evolution = '';
 
     if ($_GET['term'] ?? '') {
@@ -76,22 +72,20 @@
         $pokemon_evolution = $evoResults['evolves_from_species']['name'];
     }
 
-
     ?>
-
 
 <div class = "results-container">
     <img src='<?php echo $pokemon_image ?>'>
-    <h3><?php echo ucwords($pokemon_name) ?></h3>
-    <h3><?php echo $pokemon_id ?></h3>
-    <h3 id="pokemon_types"><?php echo ucfirst($pokemon_type)?></h3>
-    <h4 id="pokemon_evolution"> <?php
+    <h3>Name: <?php echo ucwords($pokemon_name) ?></h3>
+    <h3>Id: <?php echo $pokemon_id ?></h3>
+    <h3 id="pokemon_types">Type: <?php echo ucfirst($pokemon_type)?></h3>
+    <h4 id="pokemon_evolution">Evolution: <?php
         if ($pokemon_evolution == false) {
-            echo "This pokemon has no evolution.";
+            echo "This pokemon did not evolve.";
         } else {
             echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
-        }?></h4>
-    <p><?php echo ucfirst($pokemon_abilities) ?></p>
+        } ?></h4>
+    <p>Abilities: <?php echo ucfirst($pokemon_abilities) ?></p>
 
 </div>
 
