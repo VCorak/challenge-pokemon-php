@@ -85,7 +85,12 @@
         } else {
             echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
         } ?></h4>
-    <p>Abilities: <?php echo ucfirst($pokemon_abilities) ?></p>
+    <p>Abilities: <?php
+        if ($pokemon_abilities == false) {
+            echo "No abilities available.";
+        } else {
+            echo ucfirst($pokemon_abilities = $abilityResults['effect_entries'][1]['effect']);
+        } ?></p>
 
 </div>
 
