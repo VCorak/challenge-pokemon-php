@@ -14,6 +14,54 @@
 </head>
 <body>
 
+    <?php
+    // POKEMON IN GENERAL
+    $pokemon_name = '';
+    $pokemon_id = '';
+    $pokemon_image = '';
+    $pokemon_moves = '';
+    $pokemon_type = '';
+
+    if ($_GET['term'] ?? '') {
+        $url = "https://pokeapi.co/api/v2/pokemon/" . $_GET["term"];
+        $pokemonData = file_get_contents($url);
+        $pokemonResults = json_decode($pokemonData, true);
+
+        $pokemon_name = $pokemonResults['name'];
+        $pokemon_id = $pokemonResults['id'];
+        $pokemon_image = $pokemonResults['sprites']['other']['dream_world']['front_default'];
+        $pokemon_moves = array_slice($pokemonResults['moves'], 0, 4);
+        $pokemon_move0 = $pokemon_moves[0]['move']['name'];
+        $pokemon_move1 = $pokemon_moves[1]['move']['name'];
+        $pokemon_move2 = $pokemon_moves[2]['move']['name'];
+        $pokemon_move3 = $pokemon_moves[3]['move']['name'];
+        $pokemon_type = $pokemonResults['types'][0]['type']['name'];
+
+    }
+    // POKEMON ABILITIES
+    $pokemon_abilities = '';
+
+    if ($_GET['term'] ?? '') {
+        $ability_url = "https://pokeapi.co/api/v2/ability/" . $_GET["term"];
+        $abilityData = file_get_contents($ability_url);
+        $abilityResults = json_decode($abilityData, true);
+
+        $pokemon_abilities = $abilityResults['effect_entries'][1]['effect'];
+
+    }
+
+    // POKEMON EVOLUTION
+    $pokemon_evolution = '';
+
+    if ($_GET['term'] ?? '') {
+        $evo_url = "https://pokeapi.co/api/v2/pokemon-species/" . $_GET["term"];
+        $evoData = file_get_contents($evo_url);
+        $evoResults = json_decode($evoData, true);
+
+        $pokemon_evolution = $evoResults['evolves_from_species']['name'];
+    }
+
+    ?>
 
     <div class="content-section">
 
@@ -28,80 +76,35 @@
             </form>
         </div>
 
-        <?php
-        // POKEMON IN GENERAL
-        $pokemon_name = '';
-        $pokemon_id = '';
-        $pokemon_image = '';
-        $pokemon_moves = '';
-        $pokemon_type = '';
+    <img src='<?php echo $pokemon_image ?>'>
+    <div class="results-container">
+        <h3 class="pokemon_name">Name: <?php echo ucwords($pokemon_name) ?></h3>
+        <h3 class="pokemon_id">Id: <?php echo $pokemon_id ?></h3>
+        <h3 class="pokemon_types">Type: <?php echo ucfirst($pokemon_type) ?></h3>
+        <h4 class="pokemon_evolution">Evolution: <?php
+            if ($pokemon_evolution == false) {
+                echo "This pokemon did not evolve.";
+            } else {
+                echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
+            } ?></h4>
 
-        if ($_GET['term'] ?? '') {
-            $url = "https://pokeapi.co/api/v2/pokemon/" . $_GET["term"];
-            $pokemonData = file_get_contents($url);
-            $pokemonResults = json_decode($pokemonData, true);
-
-            $pokemon_name = $pokemonResults['name'];
-            $pokemon_id = $pokemonResults['id'];
-            $pokemon_image = $pokemonResults['sprites']['other']['dream_world']['front_default'];
-            $pokemon_moves = array_slice($pokemonResults['moves'], 0, 4);
-            $pokemon_move0 = $pokemon_moves[0]['move']['name'];
-            $pokemon_move1 = $pokemon_moves[1]['move']['name'];
-            $pokemon_move2 = $pokemon_moves[2]['move']['name'];
-            $pokemon_move3 = $pokemon_moves[3]['move']['name'];
-            $pokemon_type = $pokemonResults['types'][0]['type']['name'];
-
-        }
-        // POKEMON ABILITIES
-        $pokemon_abilities = '';
-
-        if ($_GET['term'] ?? '') {
-            $ability_url = "https://pokeapi.co/api/v2/ability/" . $_GET["term"];
-            $abilityData = file_get_contents($ability_url);
-            $abilityResults = json_decode($abilityData, true);
-
-            $pokemon_abilities = $abilityResults['effect_entries'][1]['effect'];
-
-        }
-
-        // POKEMON EVOLUTION
-        $pokemon_evolution = '';
-
-        if ($_GET['term'] ?? '') {
-            $evo_url = "https://pokeapi.co/api/v2/pokemon-species/" . $_GET["term"];
-            $evoData = file_get_contents($evo_url);
-            $evoResults = json_decode($evoData, true);
-
-            $pokemon_evolution = $evoResults['evolves_from_species']['name'];
-        }
-
-        ?>
-
-        <div class="results-container">
-            <img src='<?php echo $pokemon_image ?>'>
-            <h3 class="pokemon_name">Name: <?php echo ucwords($pokemon_name) ?></h3>
-            <h3 class="pokemon_id">Id: <?php echo $pokemon_id ?></h3>
-            <h3 class="pokemon_types">Type: <?php echo ucfirst($pokemon_type) ?></h3>
-            <ul><h3 class="pokemon_moves">Moves:</h3>
-                <li><?php echo $pokemon_move0 = $pokemon_moves[0]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move1 = $pokemon_moves[1]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move2 = $pokemon_moves[2]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move3 = $pokemon_moves[3]['move']['name'] ?></li>
-            </ul>
-            <h4 id="pokemon_evolution">Evolution: <?php
-                if ($pokemon_evolution == false) {
-                    echo "This pokemon did not evolve.";
-                } else {
-                    echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
-                } ?></h4>
-            <p><strong>Abilities:</strong> <?php
-                if ($pokemon_abilities == false) {
-                    echo "No abilities available.";
-                } else {
-                    echo ucfirst($pokemon_abilities = $abilityResults['effect_entries'][1]['effect']);
-                } ?></p>
-        </div>
+        <ul><h3 class="pokemon_moves">Moves:</h3>
+            <li><?php echo $pokemon_move0 = $pokemon_moves[0]['move']['name'] ?></li>
+            <li><?php echo $pokemon_move1 = $pokemon_moves[1]['move']['name'] ?></li>
+            <li><?php echo $pokemon_move2 = $pokemon_moves[2]['move']['name'] ?></li>
+            <li><?php echo $pokemon_move3 = $pokemon_moves[3]['move']['name'] ?></li>
+        </ul>
     </div>
+    <div class="abilities-container">
+        <p><strong>Abilities:</strong> <?php
+            if ($pokemon_abilities == false) {
+                echo "No abilities available.";
+            } else {
+                echo ucfirst($pokemon_abilities = $abilityResults['effect_entries'][1]['effect']);
+            } ?></p>
+    </div>
+
+</div>
 
 </body>
 </html>

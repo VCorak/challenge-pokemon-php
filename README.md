@@ -40,7 +40,12 @@ $pokemonResults = json_decode($pokemonData, true);
 
 
 - display results
-    - manage to display name and id for now...to be continued tomorrow...
+    - manage to display everything but struggled to loop through types array so just wrote variables for every type, need to check that also
+  
+#CONCLUSION 
+- php is still very confusing but getting there. Had troubles looping through arrays, couldn't find a method that works, have to practice that.
+- I struggle with CSS!!!! actually. Realized that with every assignment I get worse, not better, that is weird and need to work on that. Just deleted all my css and have to start over...
+
 
 
 

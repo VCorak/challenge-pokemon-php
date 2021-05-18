@@ -1,43 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-
 }
-
-body {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .content-section {
-    width: 50rem;
-    height: 50rem;
-    color: gray;
-}
-
-.search-container, .results-container {
     display: grid;
-    grid-auto-flow: row;
-    gap: 4px;
     align-items: center;
-    justify-items: center;
-}
-
-.search-container {
-    margin-top: 1.25rem;
-}
-
-img {
-    position: relative;
-    right: 18.75rem;
-    top: 100px;
-    size: 200px;
-}
-
-.pokemon_name, .pokemon_id, .pokemon_types {
-    position: relative;
-    right: 40px;
-    bottom: 100px;
+    justify-content: center;
 }
