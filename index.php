@@ -63,9 +63,9 @@ if ($_GET['term'] ?? '') {
 ?>
 
 <form>
-    <label for="inputPoke">Pokémon ID/Name</label><br>
+    <label for="inputPoke">Pokémon ID or name</label><br>
     <input type="text" id="inputPoke" name="term">
-    <button type="submit" id="searchPoke" placeholder="Pokemon id or name">Go</button>
+    <button type="submit" id="searchPoke"> Go</button>
 </form>
 <div class="leftSide">
     <div class="row">
