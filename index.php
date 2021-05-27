@@ -8,9 +8,7 @@
     <title>Pokedex php</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -64,53 +62,52 @@ if ($_GET['term'] ?? '') {
 
 ?>
 
-<div class="container">
-
-    <div class="search-container">
-        <form class="search-container col-md-5 col-sm-5">
-            <div class="input-group mb-3">
-                <button class="btn btn-primary" type="submit" id="button-addon1">Search</button>
-                <input type="text" id="input-id" name="term" class="form-control"
-                       placeholder="Pokemon id or name" aria-label="Example text with button addon"
-                       aria-describedby="button-addon1">
+<form>
+    <label for="inputPoke">Pokémon ID/Name</label><br>
+    <input type="text" id="inputPoke" name="term">
+    <button type="submit" id="searchPoke" placeholder="Pokemon id or name">Go</button>
+</form>
+<div class="leftSide">
+    <div class="row">
+        <div class="column">
+            <!-- <div class="pokeSprite"><span id="pokeSprite"></span> -->
+            <div class="pokeSprite"><img src='<?php echo $pokemon_image ?>' id="pokeSprite"></div>
+        </div>
+    </div>
+</div>
+<div class="rightSide">
+    <div class="row">
+        <div class="column">
+            <div class="pokeName">
+                <p>Name: Name: <?php echo ucwords($pokemon_name) ?> <span id="pokeName"></span><br/></p>
             </div>
-        </form>
-    </div>
-    <div class="image-container">
-        <img src='<?php echo $pokemon_image ?>'>
-    </div>
+            <div class="pokeID"><p>ID: <?php echo $pokemon_id ?><span id="pokeID"></span><br/></p>
+                <div class="pokeEvo"><p>Evolution: <?php
+                        if ($pokemon_evolution == false) {
+                            echo "This pokemon did not evolve.";
+                        } else {
+                            echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
+                        } ?><span id="pokeEvo"></span><br/></p>
+                    <div class="pokeAbilities"><p>Abilities: <?php
+                            if ($pokemon_abilities == false) {
+                                echo "No abilities available.";
+                            } else {
+                                echo ucfirst($pokemon_abilities = $abilityResults['effect_entries'][1]['effect']);
+                            } ?><span id="pokeAbilities"></span><br/></p>
 
-    <div class="results-container">
-        <div class="general-info">
-            <h2>Name: <?php echo ucwords($pokemon_name) ?></h2>
-            <h3>Id: <?php echo $pokemon_id ?></h3>
-            <h3>Type: <?php echo ucfirst($pokemon_type) ?></h3>
-            <h3>Evolution: <?php
-                if ($pokemon_evolution == false) {
-                    echo "This pokemon did not evolve.";
-                } else {
-                    echo ucfirst($pokemon_evolution = $evoResults['evolves_from_species']['name']);
-                } ?></h3>
-        </div>
-        <div class="moves">
-            <ul><h3>Moves:</h3>
-                <li><?php echo $pokemon_move0 = $pokemon_moves[0]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move1 = $pokemon_moves[1]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move2 = $pokemon_moves[2]['move']['name'] ?></li>
-                <li><?php echo $pokemon_move3 = $pokemon_moves[3]['move']['name'] ?></li>
-            </ul>
+                        <div class="pokeMove1"><p>Move 1: <?php echo $pokemon_move0 = $pokemon_moves[0]['move']['name'] ?> <span id="pokeMove1"></span><br/></p>
+                </div>
+                <div class="pokeMove2"><p>Move 2: <?php echo $pokemon_move0 = $pokemon_moves[1]['move']['name'] ?> <span id="pokeMove2"></span><br/></p>
+                </div>
+                <div class="pokeMove3"><p>Move 3: <?php echo $pokemon_move0 = $pokemon_moves[2]['move']['name'] ?> <span id="pokeMove3"></span><br/></p>
+                </div>
+                <div class="pokeMove4"><p>Move 4: <?php echo $pokemon_move0 = $pokemon_moves[3]['move']['name'] ?> <span id="pokeMove4"></span><br/></p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="abilities-container">
-        <p><strong>Abilities:</strong> <?php
-            if ($pokemon_abilities == false) {
-                echo "No abilities available.";
-            } else {
-                echo ucfirst($pokemon_abilities = $abilityResults['effect_entries'][1]['effect']);
-            } ?></p>
-    </div>
-
 </div>
 
 </body>
 </html>
+
