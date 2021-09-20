@@ -1,22 +1,16 @@
-Title: The pokemon challenge - PHP style
-Repository: challenge-pokemon-php
+# Title: The pokemon challenge - PHP style
+### Repository: challenge-pokemon-php
 
-Type of Challenge: Learning
+### Type of Challenge: Learning
 
-Duration: 2 days
-
-Deployment strategy : NA
-
-Team challenge : solo
-
-Learning objectives
-Starting with PHP
-To be able to write a simple condition and a simple loop
-To know how to access external resources (API)
-To know where to search for PHP documentation
+### Learning objectives
+* Starting with PHP
+* To be able to write a simple condition and a simple loop
+* To know how to access external resources (API)
+* To know where to search for PHP documentation
 
 
-#Timeline
+## Timeline
 
 First I need to read documentation because I do not even know how to start, so starting from basics.
 - I managed to start localhost, still do not have virtual host but at least I can see what is going on in browser...
@@ -37,12 +31,10 @@ $pokemonResults = json_decode($pokemonData, true);
         }
 
 - found out that this double ?? actually replaces isset($_GET['term]) ? $_GET['term] : ''; - that part after ? which has to be true
-
-
 - display results
     - manage to display everything but struggled to loop through types array so just wrote variables for every type, need to check that also
   
-#CONCLUSION 
+## CONCLUSION 
 - php is still very confusing but getting there. Had troubles looping through arrays, couldn't find a method that works, have to practice that.
 - I struggle with CSS!!!! actually. Realized that with every assignment I get worse, not better, that is weird and need to work on that. Just deleted all my css and have to start over...
 
